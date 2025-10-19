@@ -19,18 +19,6 @@ import flax.linen as nn
 from flax.linen import attention as attn
 
 def get_sinusoidal_embeddings(max_len: int, d_model: int) -> jnp.ndarray:
-    """Generate sinusoidal positional embeddings (Vaswani et al. 2017).
-    
-    This is deterministic (no learnable parameters) and may generalize better
-    to sequence lengths not seen during training.
-    
-    Args:
-        max_len: Maximum sequence length
-        d_model: Embedding dimension
-    
-    Returns:
-        Positional embeddings of shape (max_len, d_model)
-    """
     position = jnp.arange(max_len)[:, None]  # (max_len, 1)
     div_term = jnp.exp(jnp.arange(0, d_model, 2) * -(jnp.log(10000.0) / d_model))
     
