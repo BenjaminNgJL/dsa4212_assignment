@@ -67,12 +67,13 @@ class FlexibleSelfAttention(nn.Module):
     n_heads: int
     dropout_rate: float = 0.1
     max_len: int = 512
-    pos_encoding: str = "rotary"  # options: rotary, learned, sinusoidal
+    pos_encoding: str = "sinusoidal"  # options: rotary, learned, sinusoidal
 
     def setup(self):
         self.head_dim = self.d_model // self.n_heads
         if self.pos_encoding == "rotary":
             self.rotary_emb = RotaryEmbedding(dim=self.head_dim, max_len=self.max_len)
+        ############# 
 
     @nn.compact
     def __call__(self, x, mask=None, deterministic=True):  # ← ADD THIS DECORATOR
@@ -144,7 +145,7 @@ class DecoderOnlyTransformer(nn.Module):
     max_len: int
     mlp_ratio: int = 4
     dropout_rate: float = 0.1
-    pos_encoding: str = "rotary"  # options: rotary, learned, sinusoidal
+    pos_encoding: str = "sinusoidal"  # options: rotary, learned, sinusoidal
 
     def setup(self):
         self.tok_embed = nn.Embed(self.vocab_size, self.d_model)
