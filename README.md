@@ -50,7 +50,7 @@ The project explores how different model and training hyperparameters, such as c
 | Dropout Rate            | 7.8672e-06                     |
 
 ## Final Training Results  
-- Final Iterations: 213 , 970  
+- Final Iterations: 213,970  
 - Training Time: ~7,171 seconds  
 - Train Loss: 1.2308  
 - Test Loss: 1.2351  
